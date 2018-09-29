@@ -58,18 +58,17 @@ import spirit.fitness.scanner.restful.HttpRestApi;
 import spirit.fitness.scanner.restful.ModelZoneMapRepositoryImplRetrofit;
 import spirit.fitness.scanner.restful.listener.InventoryCallBackFunction;
 import spirit.fitness.scanner.restful.listener.ModelZone2CallBackFunction;
-import spirit.fitness.scanner.util.ExcelHelper;
-import spirit.fitness.scanner.util.LoadingFrameHelper;
-import spirit.fitness.scanner.util.LocationHelper;
+import spirit.fitness.scanner.until.LoadingFrameHelper;
+
 //import spirit.fitness.scanner.util.NetWorkHandler;
-import spirit.fitness.scanner.util.PrintJtableUtil;
-import spirit.fitness.scanner.util.PrintTableUtil;
-import spirit.fitness.scanner.util.PrinterHelper;
 
 import spirit.fitness.scanner.model.Itembean;
 import spirit.fitness.scanner.model.ModelDailyReportbean;
 import spirit.fitness.scanner.model.ModelZone2bean;
 import spirit.fitness.scanner.model.PickUpZoneMap;
+import spirit.fitness.scanner.printer.until.PrintJtableUtil;
+import spirit.fitness.scanner.printer.until.PrintTableUntil;
+import spirit.fitness.scanner.printer.until.PrinterHelper;
 
 
 
@@ -126,7 +125,7 @@ public class PickupZone {
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame1.setTitle("Zone2fifo");
 		frame1.setLocationRelativeTo(null);
-		frame1.setBounds(70, 100, 800, 1875);
+		frame1.setBounds(70, 100, 1050, 1875);
 		//frame.setUndecorated(true);
 		frame1.setResizable(false);
 		}
@@ -163,7 +162,7 @@ public class PickupZone {
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.setTitle("Zone2fifo");
 		frame2.setLocationRelativeTo(null);
-		frame2.setBounds(70, 100, 800, 1875);
+		frame2.setBounds(70, 100, 1050, 1875);
 		//frame.setUndecorated(true);
 		frame2.setResizable(false);
 		}
@@ -200,7 +199,7 @@ public class PickupZone {
 		frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame3.setTitle("Zone2fifo");
 		frame3.setLocationRelativeTo(null);
-		frame3.setBounds(70, 100, 800, 1875);
+		frame3.setBounds(70, 100, 1050, 1875);
 		//frame.setUndecorated(true);
 		frame3.setResizable(false);
 
@@ -276,7 +275,7 @@ public class PickupZone {
 		String zone = "";
 
 		Object columnNames[] = { "Model#", "Location", "Quantity" };
-		Font font = new Font("Verdana", Font.BOLD, 18);
+		Font font = new Font("Verdana", Font.BOLD, 38);
 		final Class[] columnClass = new Class[] { String.class, String.class, Integer.class };
 
 		DefaultTableModel model = new DefaultTableModel(rowDataReport, columnNames) {
@@ -297,7 +296,7 @@ public class PickupZone {
 		table.getTableHeader().setBackground(Constrant.DISPALY_ITEMS_TABLE_COLOR);
 		table.setBackground(Constrant.DISPALY_ITEMS_TABLE_COLOR);
 		table.setFont(font);
-		table.setRowHeight(40);
+		table.setRowHeight(45);
 		DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
 		leftRenderer.setHorizontalAlignment(JLabel.CENTER);
 		
@@ -318,12 +317,12 @@ public class PickupZone {
 
 		int heigh = 0;
 		//System.out.println("" + 50 * rowDataReport.length + 20);
-		if (50 * rowDataReport.length + 20 > 1500)
-			heigh = 1500;
-		else
-			heigh = 40 * rowDataReport.length + 32;
+		//if (40 * rowDataReport.length + 20 > 1800)
+		//	heigh = 1800;
+		//else
+			heigh = 60 * rowDataReport.length;
 
-		scrollZonePane.setBounds(10, 10, 770, heigh);
+		scrollZonePane.setBounds(10, 10, 1020, heigh);
 		scrollZonePane.setViewportView(table);
 
 		panel.add(scrollZonePane);
@@ -424,7 +423,7 @@ public class PickupZone {
 		}
 
 		// String result = PrintTableUtil.printReport(headersList, rowsList);
-		String result = PrintTableUtil.printModelQuantityReport(headersList, rowsList);
+		String result = PrintTableUntil.printModelQuantityReport(headersList, rowsList);
 		// content += result + itemsInfo;
 		System.out.println(result);
 
